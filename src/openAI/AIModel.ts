@@ -1,7 +1,7 @@
 import { OpenAIChat } from 'langchain/llms/openai'
 import { retryAsync } from 'ts-retry'
 import { RETRY_COUNT } from '~/utils/constants'
-import { parseJSONFeedback, handleFeedbacks } from '~/utils/convertFeedbackJson'
+import { handleFeedbacks, parseJSONFeedback } from '~/utils/convertFeedbackJson'
 import { generateAIReport, LOG } from '~/utils/helpers'
 import { AskAIResponse, IAIModel, IFeedback } from '~/utils/types'
 

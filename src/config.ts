@@ -12,7 +12,7 @@ export const getOpenAIApiKey = (): string => {
 
 export const getOpenAIModel = (): string => {
   if (!process.env.OPENAI_API_MODEL) {
-    LOG.error('OPNot found ENAI_API_MODEL')
+    LOG.error('Not found OPENAI_API_MODEL')
   }
 
   return process.env.OPENAI_API_MODEL ?? ''

@@ -23,7 +23,7 @@
   },
   "scripts": {
     "start": "ts-node ./src/index.ts",
-    "review": "ts-node ./src/index.ts review",
+    "review": "ts-node ./src/index.ts",
     "build": "tsc",
     "postbuild": "node ./scripts/shebang.js && chmod +x ./dist/index.js",
     "publish-package": "npm i && npm run build && npm publish --access public"

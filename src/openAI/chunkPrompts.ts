@@ -16,7 +16,7 @@ export const chunkFilesToPrompts = (files: ReviewFile[], maxPromptLength: number
     const currentFileSize = file.fileName.length + file.promptContent.length
 
     if (currentFileSize > maxPayloadLength) {
-      LOG.error(`Skipping ${file.fileName}: too large for the current model.`)
+      LOG.error(`${file.fileName} too large for the current model.`)
       continue
     }
 
