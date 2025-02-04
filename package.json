@@ -1,14 +1,15 @@
 {
   "name": "ai-review-code",
   "version": "0.0.1",
-  "description": "OpenAI review code React-Native - repo azDev",
+  "description": "AI code review for Pull Requests in Azure DevOps",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lehoi2195/ai-review-code"
+    "url": "https://dev.azure.com/vib-lz-devops/B07-SD1-Project-SmartSales/_git/ai-code-review"
   },
-  "author": "lehoi2195@gmail.com",
+  "author": "vib-lz-devops",
   "license": "MIT",
+  "copyright": "© 2025 VIB. Portions inspired by Code Review GPT (© 2024 Matt Carey, MIT License).",
   "keywords": [
     "code-review",
     "rn-code-review",
