@@ -2,7 +2,7 @@ import * as azdev from 'azure-devops-node-api'
 import * as gitApiObject from 'azure-devops-node-api/GitApi'
 import * as GitInterfaces from 'azure-devops-node-api/interfaces/GitInterfaces'
 import { getAzureDevOpsEnv, getGitApi } from '~/config'
-import { SIGNATURE } from '~/utils/constants'
+import { POSSIBLE_FOLDER, SIGNATURE } from '~/utils/constants'
 import { LOG } from '~/utils/helpers'
 import { IFeedback } from '~/utils/types'
 
@@ -52,13 +52,27 @@ export const commentOnPRAzdev = async (comment: string): Promise<void> => {
     throw error
   }
 }
-
-const normalizeFilePath = (absolutePath: string): string => {
-  const srcIndex = absolutePath.indexOf('/src')
-  if (srcIndex !== -1) {
-    return absolutePath.substring(srcIndex)
+const getProjectRootFolder = (absolutePath: string): string | null => {
+  const configuredRoot = process.env.PROJECT_ROOT_FOLDER
+  if (configuredRoot && absolutePath.includes(`/${configuredRoot}/`)) {
+    return `/${configuredRoot}`
   }
 
+  LOG.debug(`No configured root folder found`)
+  for (const folder of POSSIBLE_FOLDER) {
+    if (absolutePath.includes(`/${folder}/`)) {
+      return `/${folder}`
+    }
+  }
+
+  return null
+}
+
+const normalizeFilePath = (absolutePath: string): string => {
+  const rootFolder = getProjectRootFolder(absolutePath)
+  if (rootFolder) {
+    return absolutePath.substring(absolutePath.indexOf(rootFolder))
+  }
   return absolutePath
 }
 

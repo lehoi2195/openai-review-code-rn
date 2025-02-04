@@ -25,17 +25,14 @@
     "start": "ts-node ./src/index.ts",
     "review": "ts-node ./src/index.ts",
     "build": "tsc",
-    "postbuild": "node ./scripts/shebang.js && chmod +x ./dist/index.js",
-    "publish-package": "npm i && npm run build && npm publish --access public"
+    "postbuild": "node ./scripts/shebang.js && chmod +x ./dist/index.js"
   },
   "dependencies": {
     "azure-devops-node-api": "^12.3.0",
     "dotenv": "^16.3.1",
-    "fs": "^0.0.1-security",
     "langchain": "^0.0.186",
     "module-alias": "^2.2.3",
     "path": "^0.12.7",
-    "publish-package": "^1.0.0",
     "ts-retry": "^4.2.1",
     "tslog": "^4.8.2"
   },

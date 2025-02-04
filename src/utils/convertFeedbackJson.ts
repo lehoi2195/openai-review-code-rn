@@ -1,3 +1,4 @@
+import { getArgPromptReview } from '~/config'
 import AIModel from '~/openAI/AIModel'
 import { LIMIT_FEEDBACK } from './constants'
 import { decodeAndReplaceNewlines, encodeAndCleanJSON, feedbackIsValid, formatFeedbacksArray, LOG } from './helpers'
@@ -24,6 +25,9 @@ export const parseJSONFeedback = (jsonString: string): IFeedback[] => {
 
 export const handleFeedbacks = async (model: AIModel, prompts: string[]): Promise<IFeedback[]> => {
   try {
+    const limitFeedback = process.env.LIMIT_FEEDBACK || ''
+    const limitFeedbackNumber = limitFeedback ? parseInt(limitFeedback) : LIMIT_FEEDBACK
+
     const feedbackResults = await Promise.allSettled(
       prompts.map(async (prompt) => {
         try {
@@ -48,7 +52,7 @@ export const handleFeedbacks = async (model: AIModel, prompts: string[]): Promis
         weight: feedback.riskLevel + Math.random(),
       }))
       .sort((a, b) => b.weight - a.weight)
-      .slice(0, LIMIT_FEEDBACK)
+      .slice(0, limitFeedbackNumber)
       .map(({ weight, ...rest }) => rest)
 
     LOG.info(formatFeedbacksArray(worstFeedbacks))
