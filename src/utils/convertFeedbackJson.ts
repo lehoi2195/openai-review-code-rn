@@ -1,4 +1,3 @@
-import { getArgPromptReview } from '~/config'
 import AIModel from '~/openAI/AIModel'
 import { LIMIT_FEEDBACK } from './constants'
 import { decodeAndReplaceNewlines, encodeAndCleanJSON, feedbackIsValid, formatFeedbacksArray, LOG } from './helpers'
