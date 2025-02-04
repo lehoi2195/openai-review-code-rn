@@ -92,3 +92,35 @@ export const getAzureDevOpsEnv = (): Record<string, string> => {
     project: process.env.SYSTEM_TEAMPROJECTID ?? '',
   }
 }
+
+export const getArgPromptReview = (): Record<string, string> => {
+  const envVars = [
+    'LANGUAGE_REVIEW',
+    'RISK_LEVEL_REVIEW',
+    'RISK_SCORING_REVIEW',
+    'CONFIG_RULES_REVIEW',
+    'OTHER_CHECKS_REVIEW',
+    'FEEDBACK_GUIDELINES_REVIEW',
+    'CODE_SUGGESTIONS_REVIEW',
+    'NOTES_REVIEW',
+  ]
+
+  const missingVarsPrompt: string[] = []
+  envVars.forEach((envVar) => process.env[envVar] ?? missingVarsPrompt.push(envVar))
+
+  if (missingVarsPrompt.length > 0) {
+    LOG.error(`Missing variables prompts: ${missingVarsPrompt.join(', ')}`)
+  }
+
+  return {
+    prompts: process.env.PROMPT_CONTENT_REVIEW ?? '',
+    language: process.env.LANGUAGE_REVIEW ?? '',
+    riskLevel: process.env.RISK_LEVEL_REVIEW ?? '',
+    riskScoring: process.env.RISK_SCORING_REVIEW ?? '',
+    configRules: process.env.CONFIG_RULES_REVIEW ?? '',
+    otherCheck: process.env.OTHER_CHECKS_REVIEW ?? '',
+    guidelines: process.env.FEEDBACK_GUIDELINES_REVIEW ?? '',
+    suggestions: process.env.CODE_SUGGESTIONS_REVIEW ?? '',
+    notes: process.env.NOTES_REVIEW ?? '',
+  }
+}

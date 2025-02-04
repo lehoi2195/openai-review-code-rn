@@ -13,7 +13,7 @@ export const parseJSONFeedback = (jsonString: string): IFeedback[] => {
 
   if (Array.isArray(parsedObject) && parsedObject.every(feedbackIsValid)) {
     parsedObject.forEach((item: IFeedback) => {
-      item.feedback = decodeAndReplaceNewlines(item.feedback)
+      item.details = decodeAndReplaceNewlines(item.details)
     })
 
     return parsedObject

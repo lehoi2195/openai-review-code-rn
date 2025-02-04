@@ -51,7 +51,7 @@ export const reviewPullRequest = async (
   //   );
   //   await rejectPullRequest(
   //     "Pull request rejected due to high risk feedback.",
-  //     highRiskFeedback.map((item) => item.feedback).join("\n")
+  //     highRiskFeedback.map((item) => item.details).join("\n")
   //   );
   // }
 

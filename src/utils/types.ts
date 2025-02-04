@@ -17,7 +17,8 @@ export type PromptFile = {
 export type IFeedback = {
   fileName: string
   riskLevel: number
-  feedback: string
+  details: string
+  suggestions?: string
 }
 
 export type IModelAI = {

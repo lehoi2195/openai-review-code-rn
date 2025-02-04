@@ -2,7 +2,7 @@ import * as azdev from 'azure-devops-node-api'
 import * as gitApiObject from 'azure-devops-node-api/GitApi'
 import * as GitInterfaces from 'azure-devops-node-api/interfaces/GitInterfaces'
 import { getAzureDevOpsEnv, getGitApi } from '~/config'
-import { EMOJI_MAP, SIGNATURE } from '~/utils/constants'
+import { SIGNATURE } from '~/utils/constants'
 import { LOG } from '~/utils/helpers'
 import { IFeedback } from '~/utils/types'
 
@@ -71,12 +71,11 @@ export const commentOnFile = async (feedbacks: IFeedback[]): Promise<void> => {
 
     for (const feedback of feedbacks) {
       try {
+        const codeSuggestions = feedback.suggestions?.trim() ? `\n\n\n\n\n**Suggestions:**\n\n${feedback.suggestions}` : ''
         const commentThread = <GitInterfaces.GitPullRequestCommentThread>{
           comments: [
             <GitInterfaces.Comment>{
-              content: `**${EMOJI_MAP[feedback.riskLevel]}  - Risk Level ${feedback.riskLevel}**\n\n\n${
-                feedback.feedback
-              }\n\n ${SIGNATURE}`,
+              content: `**Risk Level ${feedback.riskLevel}**\n\n\n${feedback.details}${codeSuggestions}\n\n ${SIGNATURE}`,
             },
           ],
           status: GitInterfaces.CommentThreadStatus.Active,

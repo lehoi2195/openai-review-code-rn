@@ -1,11 +1,11 @@
 {
-  "name": "openai-review-code-rn",
+  "name": "ai-review-code",
   "version": "0.0.1",
   "description": "OpenAI review code React-Native - repo azDev",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lehoi2195/openai-review-code-rn"
+    "url": "https://github.com/lehoi2195/ai-review-code"
   },
   "author": "lehoi2195@gmail.com",
   "license": "MIT",

@@ -9,7 +9,7 @@ export const LOG = new Logger({
 })
 
 export const formatFeedbackDetail = (feedback: IFeedback): string => {
-  return `\n**Risk Level ${feedback.riskLevel} - ${feedback.fileName}**\n\n${feedback.feedback}\n`
+  return `\n**Risk Level ${feedback.riskLevel} - ${feedback.fileName}**\n\n${feedback.details}\n`
 }
 
 export const formatFeedbacksArray = (feedbacks: IFeedback[]): string => {
@@ -46,8 +46,8 @@ export const decodeAndReplaceNewlines = (value: string): string => decodeURIComp
 // Check if the input is a valid IFeedback object.
 export const feedbackIsValid = (input: unknown): input is IFeedback => {
   if (typeof input === 'object' && input !== null) {
-    const { fileName, riskLevel, feedback } = input as IFeedback
-    return typeof fileName === 'string' && typeof riskLevel === 'number' && typeof feedback === 'string'
+    const { fileName, riskLevel, details } = input as IFeedback
+    return typeof fileName === 'string' && typeof riskLevel === 'number' && typeof details === 'string'
   }
   return false
 }
