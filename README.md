@@ -18,7 +18,6 @@ Before using this module, ensure you have the following environment variables se
 |-----------------------------|-------------|
 | `AZURE_PERSONAL_ACCESS_TOKEN` | Required for authentication with Azure DevOps. |
 | `OPENAI_API_KEY`             | API key for OpenAI GPT model. |
-| `TARGET_BRANCH`              | Target branch for the code review. |
 | `OPENAI_API_MODEL`           | OpenAI model to use for code review. |
 
 ### **Optional Variables**
@@ -157,7 +156,6 @@ stages:
               SYSTEM_PULLREQUEST_SOURCECOMMITID: $(SYSTEM_PULLREQUEST_SOURCECOMMITID)
               API_TOKEN: $(AZURE_PERSONAL_ACCESS_TOKEN)
               OPENAI_API_KEY: $(OPENAI_API_KEY)
-              TARGET_BRANCH: $(TARGET_BRANCH)
               BASE_SHA: $(BASE_SHA)
               OPENAI_API_MODEL: $(OPENAI_API_MODEL)
               PROJECT_ROOT_FOLDER: 'src'
